@@ -73,14 +73,23 @@ function App(){
             </table>
             <ul className="pagination">
                 {/* 페이지의 시작 번호가 1이 아니면 생기게 */}
-                {pageArray.map(num=>{
+                {/* {pageArray.map(num=>{
                     <li className={`page-item ${pageInfo.startPageNum !== 1 ? 'active':''}`} key={uuid()}>
                     <a className="page-link" href="#" onClick={(e)=>{
                         e.preventDefault();
                        refresh();
                     }}>prev</a>
                 </li>
-                })}
+                })} */}
+                <li className={`page-item ${pageInfo.startPageNum !== 1 ? 'active' : '' }`} key={uuid()}>
+                    <a className="page-link" onClick={(e)=>{
+                        e.target.classList.add("active")
+                        
+                        refresh(pageInfo.pageNum-1);
+                    }}>이전</a>
+                </li>
+
+
                 
                 {pageArray.map(num=>
                     <li className={`page-item ${pageInfo.pageNum === num ? 'active': ''}`} key={uuid()}>
@@ -91,14 +100,24 @@ function App(){
                     </li>
                 )}
                 
-                {pageArray.map(num=>{
+                {/* {pageArray.map(num=>{
                     <li className={`page-item ${pageInfo.endPageNum < pageInfo.endPageNum  ? 'active':''}`} key={uuid()}>
                     <a className="page-link" href="#" onClick={(e)=>{
                         e.preventDefault();
                        refresh();
                     }}>next</a>
                 </li>
-                })}
+                })} */}
+
+                {/* 다음 버튼 */}
+                {/* {pageInfo.endPageNum < pageInfo.totalPageCount ? } */}
+                <li className={`page-item ${pageInfo.endPageNum <pageInfo.pageNum ? 'active' : '' }`}>
+                    <a href="#" className="page-link" onClick={(e)=>{
+                        e.target.classList.add("active")
+                        console.log(pageInfo.pageNum);
+                        refresh(pageInfo.endPageNum+1);
+                    }}>다음</a>
+                </li>
 
 
 
