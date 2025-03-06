@@ -24,9 +24,11 @@ function App(){
         .then(res=>{
             console.log(res)
             //서버에서 응답한 data는 res.data 에 들어 있다.
-            console.log(res.data);
+            console.log(res.data.startPageNum);
             //상태값을 변경한다.
             setPageInfo(res.data);
+            
+
             //페이징 처리에 필요한 배열을 만들어서 
             const result=range(res.data.startPageNum, res.data.endPageNum);
             //상태값을 변경한다.
@@ -70,14 +72,37 @@ function App(){
                 </tbody>
             </table>
             <ul className="pagination">
+                {/* 페이지의 시작 번호가 1이 아니면 생기게 */}
+                {pageArray.map(num=>{
+                    <li className={`page-item ${pageInfo.startPageNum !== 1 ? 'active':''}`} key={uuid()}>
+                    <a className="page-link" href="#" onClick={(e)=>{
+                        e.preventDefault();
+                       refresh();
+                    }}>prev</a>
+                </li>
+                })}
+                
                 {pageArray.map(num=>
-                    <li className={`page-item ${pageInfo.pageNum == num ? 'active': ''}`} key={uuid()}>
+                    <li className={`page-item ${pageInfo.pageNum === num ? 'active': ''}`} key={uuid()}>
                         <a className="page-link" href="#" onClick={(e)=>{
                             e.preventDefault(); //링크의 기본 동작 막기
                             refresh(num);
                         }}>{num}</a>
                     </li>
                 )}
+                
+                {pageArray.map(num=>{
+                    <li className={`page-item ${pageInfo.endPageNum < pageInfo.endPageNum  ? 'active':''}`} key={uuid()}>
+                    <a className="page-link" href="#" onClick={(e)=>{
+                        e.preventDefault();
+                       refresh();
+                    }}>next</a>
+                </li>
+                })}
+
+
+
+
             </ul>
         </div>
     )
