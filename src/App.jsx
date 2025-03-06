@@ -21,8 +21,9 @@ function App(){
     const refresh = (pageNum) =>{
         axios.get("/posts?pageNum="+pageNum)
         .then(res=>{
-            console.log(res)
+            console.log(res) 
             //서버에서 응답한 data는 res.data 에 들어 있다.
+            //data 는 요청한 pageNum에 맞는 row , startPageNum , endPageNum , totalPageNum 가 오브젝트로 들어있음
             console.log(res.data);
             //상태값을 변경한다.
             setPageInfo(res.data);
