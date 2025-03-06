@@ -7,6 +7,7 @@ import {v4 as uuid} from "uuid";
     아래와 같이 import 하면 전역에서 사용가능한 bootstrap css 가 로딩된다.
 */
 import "bootstrap/dist/css/bootstrap.css"
+//git test
 function App(){
     //페이지 정보를 state 로 관리한다 
     const [pageInfo, setPageInfo] = useState({
