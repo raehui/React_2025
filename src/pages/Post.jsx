@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { NavLink, useNavigate, useSearchParams } from 'react-router-dom';
 
 import { v4 as uuid } from "uuid";
 
@@ -64,6 +64,7 @@ function Post(props) {
     return (
         <>
             <h1>글 목록 입니다.</h1>
+            <NavLink to="/posts/new">새글 작성</NavLink>
             {/* 실제 글 목록 나오게 */}
             <table className="table table-striped">
                 <thead className="table-dark">
@@ -71,6 +72,9 @@ function Post(props) {
                         <th>번호</th>
                         <th>제목</th>
                         <th>작성자</th>
+                        <th>수정</th>
+                        <th>삭제</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -79,6 +83,30 @@ function Post(props) {
                             <td>{item.id}</td>
                             <td>{item.title}</td>
                             <td>{item.author}</td>
+                            <td>
+                                <NavLink to={`/posts/${item.id}/edit`}>수정</NavLink>
+                            </td>
+                            <td>
+                                <button onClick={()=>{
+                                    axios.delete(`/posts/${item.id}`)
+                                    .then(res=>{
+                                        alert(res.data.id +"번글을 삭제 했습니다.")
+                                        //현재 페이지 정보가 다시 출력되도록 한다.
+                                        //? 왜 refresh
+                                        //refresh(pageInfo.pageNum);
+                                        //refresh() 대신에 아래와 같이 작업할 수도 있다.
+                                        // move(pageInfo.pageNum);
+
+                                        //pageInfo.list 에서 실제 삭제된 글정보를 실제 삭제한 배열을 얻어내서 상태값 변경
+                                        setPageInfo({
+                                            ...pageInfo,
+                                            list:pageInfo.list.filter(item=>item.id !== res.data.id)
+                                        })
+
+                                    })
+                                    .catch(err=>console.log(err));
+                                }}>x</button>
+                            </td>
                         </tr>
                     )}
                 </tbody>

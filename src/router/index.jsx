@@ -6,6 +6,9 @@ import Home from "../pages/Home";
 import Study from "../pages/Study";
 import App from "../App";
 import Post from "../pages/Post";
+import PostForm from "../pages/PostForm";
+import PostUpdateForm from "../pages/PostUpdateForm";
+
 
 // 라우팅 정보를 배열에 미리 저장해 둔다.
 // 경로에 따라서 component 를 활성화
@@ -13,7 +16,11 @@ const routes=[
     {path:"/",element:<Home/>},
     {path:"/game",element:<Game/>},
     {path:"/study",element:<Study/>},
-    {path:"/posts",element:<Post/>}
+    {path:"/posts",element:<Post/>},
+    {path:"/posts/new",element:<PostForm/>},
+    {path:"/posts/:id/edit",element:<PostUpdateForm/>}
+
+
 ];
 
 //export 해출 router 객체를 만든다.
