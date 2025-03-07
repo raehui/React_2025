@@ -15,6 +15,7 @@ function App() {
                 <li><NavLink to="/game">Game</NavLink></li>
                 <li><NavLink to="/study">Study</NavLink></li>
                 <li><NavLink to="/posts">Post</NavLink></li>
+
             </ul>
             <button className="btn btn-primary" onClick={() => {
                 // javascript 로 "/post" 경로로 라우트 되게 하려면? navigate
@@ -25,6 +26,11 @@ function App() {
                 // javascript 로 "/post" 경로로 라우트 되게 하려면? navigate
                 navigate("/posts?pageNum=2")
             }}>Post 2 Page</button>
+
+            <button className="btn btn-primary" onClick={() => {
+                // javascript 로 "/post" 경로로 라우트 되게 하려면? navigate
+                navigate("/postinsert")
+            }}>Post insert</button>
 
             <div>{currentOutlet}</div>
         </div>
