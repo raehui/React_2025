@@ -22,9 +22,9 @@ function App(){
     const refresh = (pageNum) =>{
         axios.get("/posts?pageNum="+pageNum)
         .then(res=>{
-            console.log(res)
+            //console.log(res)
             //서버에서 응답한 data는 res.data 에 들어 있다.
-            console.log(res.data.startPageNum);
+            console.log(res.data);
             //상태값을 변경한다.
             setPageInfo(res.data);
             
@@ -73,14 +73,17 @@ function App(){
             </table>
             <ul className="pagination">
                 {/* 페이지의 시작 번호가 1이 아니면 생기게 */}
-                {pageArray.map(num=>{
+                {/* {pageArray.map(num=>{
                     <li className={`page-item ${pageInfo.startPageNum !== 1 ? 'active':''}`} key={uuid()}>
                     <a className="page-link" href="#" onClick={(e)=>{
                         e.preventDefault();
                        refresh();
                     }}>prev</a>
                 </li>
-                })}
+                })} */}
+                {/* 이전버튼 */}
+                
+                
                 
                 {pageArray.map(num=>
                     <li className={`page-item ${pageInfo.pageNum === num ? 'active': ''}`} key={uuid()}>
@@ -90,17 +93,9 @@ function App(){
                         }}>{num}</a>
                     </li>
                 )}
+
+                {/* 다음 버튼 */}
                 
-                {pageArray.map(num=>{
-                    <li className={`page-item ${pageInfo.endPageNum < pageInfo.endPageNum  ? 'active':''}`} key={uuid()}>
-                    <a className="page-link" href="#" onClick={(e)=>{
-                        e.preventDefault();
-                       refresh();
-                    }}>next</a>
-                </li>
-                })}
-
-
 
 
             </ul>
