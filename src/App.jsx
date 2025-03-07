@@ -81,9 +81,21 @@ function App(){
                     }}>prev</a>
                 </li>
                 })} */}
+
                 {/* 이전버튼 */}
                 
                 
+
+                <li className={`page-item ${pageInfo.startPageNum !== 1 ? 'active' : '' }`} key={uuid()}>
+                    <a className="page-link" onClick={(e)=>{
+                        e.target.classList.add("active")
+                        
+                        refresh(pageInfo.pageNum-1);
+                    }}>이전</a>
+                </li>
+
+
+
                 
                 {pageArray.map(num=>
                     <li className={`page-item ${pageInfo.pageNum === num ? 'active': ''}`} key={uuid()}>
@@ -96,6 +108,29 @@ function App(){
 
                 {/* 다음 버튼 */}
                 
+
+
+                {/* {pageArray.map(num=>{
+                    <li className={`page-item ${pageInfo.endPageNum < pageInfo.endPageNum  ? 'active':''}`} key={uuid()}>
+                    <a className="page-link" href="#" onClick={(e)=>{
+                        e.preventDefault();
+                       refresh();
+                    }}>next</a>
+                </li>
+                })} */}
+
+                {/* 다음 버튼 */}
+                {/* {pageInfo.endPageNum < pageInfo.totalPageCount ? } */}
+                <li className={`page-item ${pageInfo.endPageNum <pageInfo.pageNum ? 'active' : '' }`}>
+                    <a href="#" className="page-link" onClick={(e)=>{
+                        e.target.classList.add("active")
+                        console.log(pageInfo.pageNum);
+                        refresh(pageInfo.endPageNum+1);
+                    }}>다음</a>
+                </li>
+
+
+
 
 
             </ul>
