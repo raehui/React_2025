@@ -1,7 +1,7 @@
 import { NavLink, useNavigate, useOutlet } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 
-// test_updat, delete
+
 function App() {
     // 현재 route 된 정보를 출력새주는 hook
     const currentOutlet = useOutlet();
