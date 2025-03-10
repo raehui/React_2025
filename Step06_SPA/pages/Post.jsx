@@ -33,7 +33,7 @@ function Post(props) {
 
     //페이지를 요청해서 출력하는 함수
     const refresh = (pageNum) => {
-        axios.get("/posts?pageNum=" + pageNum)
+        axios.get("/v3/posts?pageNum=" + pageNum)
             .then(res => {
                 console.log(res)
                 //서버에서 응답한 data는 res.data 에 들어 있다.
@@ -88,7 +88,7 @@ function Post(props) {
                             </td>
                             <td>
                                 <button onClick={()=>{
-                                    axios.delete(`/posts/${item.id}`)
+                                    axios.delete(`/v3/posts/${item.id}`)
                                     .then(res=>{
                                         alert(res.data.id +"번글을 삭제 했습니다.")
                                         //현재 페이지 정보가 다시 출력되도록 한다.
