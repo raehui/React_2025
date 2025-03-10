@@ -1,0 +1,8 @@
+/* src/components/css/study.module.css */
+.my-color{
+    color: red;
+    /* background-color: green; */
+}
+.bg-yellow{
+    background-color: yellow;
+}
