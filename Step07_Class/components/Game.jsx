@@ -39,7 +39,7 @@ function Game(props) {
                 //체크되면 true 로 변경
                 setYellow(e.target.checked);
             }} />
-            {/* <p className={cx({"bg-yellow":isYellow})}></p> */}
+            <p className={cx({"bg-yellow":isYellow})}>테스트</p>
             <br />
             {/* 체크된 css 요소에 반영  */}
             my-color <input type="checkbox" name='my-color' onChange={handleChange} />
