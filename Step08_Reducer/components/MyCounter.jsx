@@ -45,7 +45,7 @@ function MyCounter(props) {
                 이메일 : <strong>{state.email}</strong>
             </p>
             <button onClick={()=>{
-                //action(동작) 발행
+                //action(동작) 발행 = minus action  이 실행
                 dispatch("minus");
             }}>-</button>
             <strong>{state.count}</strong>

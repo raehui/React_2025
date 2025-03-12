@@ -63,6 +63,7 @@ function Friends(props) {
                 //입력한 내용을 payload 라는 변수에 담고 
                 const action = {type:"add",payload:name};
                 //action 발행하기
+                //dispatch 로 action 에 담긴 type 과 payload 를 갖고 new state 를 만들겠다.
                 dispatch(action);
             }}>추가</button>
             <button onClick={()=>{
