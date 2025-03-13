@@ -30,7 +30,7 @@ function App2(props) {
             const result = decodeToken(localStorage.token.substring(7));
             //토큰에 담긴 정보가  object 에 들어있다.
             console.log(result);
-            //espire 되는 시간이 초 단위로 저장되어 잇으므로 1000을 곱해서 ms 초 단위로 만든다.
+            //expire 되는 시간이 초 단위로 저장되어 잇으므로 1000을 곱해서 ms 초 단위로 만든다.
             const expTime = result.payload.exp *1000
             // 현재 시간 ms 초 단위로 얻어내기
             const now = new Date().getTime();
