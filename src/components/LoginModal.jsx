@@ -54,6 +54,7 @@ function LoginModal(props) {
     return (
         <>  
             {/* show={props.show} */}
+            {/* 부모 요소에서 관리되는 loginModal.show의 값을 갖고오고 그걸 관리할 권한을 준다 */}
             <Modal {...props} size='lg' centered>
                 <Modal.Header closeButton>
                     <Modal.Title>{loginModal.title}</Modal.Title>
