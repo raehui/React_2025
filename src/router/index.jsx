@@ -3,6 +3,10 @@ import { createBrowserRouter, createHashRouter } from "react-router-dom";
 import Home from "../pages/Home";
 import App from "../App";
 import Post from "../pages/Post";
+import UserDetail from "../pages/UserDetail";
+import ProtectedRoute from "../components/ProtectedRoute";
+import UserUpdateForm from "../pages/UserUpdateForm";
+import UserPwdUpdateForm from "../pages/UserPwdUpdateForm";
 
 
 
@@ -13,8 +17,10 @@ const routes=[
     // 그럴때도 Home 컴포넌트가 활성화 될 수 있도록 라우트 정보를 추가한다.
     {path:"/index.html",element:<Home/>},
     {path:"/",element:<Home/>},
-    {path:"/posts",element:<Post/>}
-    
+    {path:"/posts",element:<Post/>},
+    {path:"/user/detail",element:<ProtectedRoute ><UserDetail/></ProtectedRoute>},
+    {path:"/user/edit",element:<ProtectedRoute><UserUpdateForm/></ProtectedRoute>},
+    {path:"/user/password/edit",element:<ProtectedRoute><UserPwdUpdateForm/></ProtectedRoute>}
 
 
 ];

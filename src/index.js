@@ -18,7 +18,7 @@ const initState = {
 };
 
 //action 에는 2가지의 정보(type, payload)를 담을 수 있다.
-//reducer 함수
+//reducer 함수에서 관리되는 상태값
 const reducer = (state = initState, action)=>{
   let newState;
   if(action.type == "USER_INFO"){

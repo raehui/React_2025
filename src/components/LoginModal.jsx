@@ -22,9 +22,12 @@ function LoginModal(props) {
     const dispatch = useDispatch();
 
     //로그인 버튼을 눌렀을 때 실행할 함수
+     // state 에는 {userName : "xxx", password : "1234" } ? 누가 담는가?
     const handleLogin = () =>{
-        axios.post("/auth",state)
+        axios.post("/auth",state) 
         .then(res =>{
+            // axios 의 요청의 헤더에 자동 포함 되도록 한다.
+            axios.defaults.headers.common["Authorization"]=res.data;
             //res.data = 토큰
             console.log(res.data);
             //토큰을 localStorage 에 저장
