@@ -42,9 +42,11 @@ function UserPwdUpdateForm() {
     // input 요소에 change 이벤트가 일어 났을때 실행할 함수 
     const handleChange = (e) => {
         // e.target 은  name 과 value 가 있는 object 인데 해당 object 의 구조를 분해 할당한다.
+        // 기존 비밀번호와 새로운 비밀번호 동적 선택
         const { name, value } = e.target
 
-        //만일 현재 입력란이 아직 더럽혀지지 않았다면 
+        //만일 현재 입력란이 아직 더럽혀지지 않았다면
+        // 기존 비밀번호 작성 시 password 의 true 로 변함
         if (!isDirty[name]) {
             //더럽혀 졌는지 여부를 변경하기 
             setDirty({
@@ -52,7 +54,7 @@ function UserPwdUpdateForm() {
                 [name]: true
             })
         }
-
+        // 입력 데이터로 상태 변경
         setFormData({
             ...formData,
             [name]: value
@@ -130,6 +132,7 @@ function UserPwdUpdateForm() {
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                     <Form.Label>기존 비밀 번호</Form.Label>
+                    {/* 값을 입력하면 실시간으로 검증 작업 이뤄짐 handleChange 가 실행되면   */}
                     <Form.Control isValid={isValid.password}
                         isInvalid={!isValid.password && isDirty.password} onChange={handleChange} type="password" name="password" />
                     <div className="form-text">
@@ -138,11 +141,13 @@ function UserPwdUpdateForm() {
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>새 비밀 번호</Form.Label>
+                    {/* 새로운 비빌번호가 유효하지 않으면 더러워지고 무효함  */}
                     <Form.Control isValid={isValid.newPassword}
                         isInvalid={!isValid.newPassword && isDirty.newPassword} onChange={handleChange} type="password" name="newPassword" />
                     <div className="form-text">
                         특수문자를 하나이상 포함하고 확인란과 같아야 합니다
                     </div>
+                    {/*  무효하면    */}
                     <Form.Control.Feedback type="invalid">
                         비밀번호를 확인하세요!
                     </Form.Control.Feedback>
