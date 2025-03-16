@@ -9,6 +9,7 @@ function Home(props) {
                 axios.get("/ping")
                 .then(res =>{
                     alert(res.data);
+                    
                 })
                 .catch(error=>{
                     alert("응답하지 않음");

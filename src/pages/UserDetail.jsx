@@ -13,7 +13,8 @@ function UserDetail(props) {
     useEffect(()=>{
         axios.get("/user")
         .then(res=>{
-            //응답된 내용을 이용해서 state 를 변경한다
+            //console.log(res);
+            //응답된 내용 (userdto 정보 ) 을 이용해서 state 를 변경한다
             setUser(res.data);
         })
         .catch(error=>{

@@ -141,6 +141,7 @@ function UserUpdateForm(props) {
             </svg>
 
             <h1>개인 정보 수정 양식</h1>
+            
             <Form onReset={handleReset} onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                     <Form.Label>사용자명</Form.Label>

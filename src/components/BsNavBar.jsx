@@ -38,7 +38,7 @@ function BsNavBar(props) {
                                     //알람창을 띄우면서 결과값을 boolean 으로 출력함
                                     const isLogout = window.confirm("확인을 누르면 로그아웃 됩니다.");
                                     // console.log(isLogout); 
-                                    // 로그아웃의 알림창의 취고 클릭
+                                    // 로그아웃의 알림창의 취소 클릭
                                     if(!isLogout)return;
                                     //로컬 저장소에 있는 토큰 삭제
                                     delete localStorage.token;

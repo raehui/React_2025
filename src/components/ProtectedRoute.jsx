@@ -4,7 +4,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-// children 은 userDetail 컴포넌트
+
 // props 에서 children 을 얻어내 리턴하는 함수
 function ProtectedRoute({children}) {
 
