@@ -2,9 +2,9 @@
 
 import axios from "axios";
 import { useState } from "react";
-import { Alert, Button, Form } from "react-bootstrap";
+import { Alert, Breadcrumb, BreadcrumbItem, Button, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
@@ -64,16 +64,18 @@ function UserPwdUpdateForm() {
 
     //검증 함수
     const validate = (name, value) => {
+        // 정규 표현식 검증
         if (name === "password") {
             setValid({
                 ...isValid,
                 [name]: reg_password.test(value)
             })
-        } else if (name === "newPassword") {
+        } else if (name === "newPassword") {            
+            // 두 개의 입력값이 일치하는지 = 입력한 newPassword 가 newPassword2 와 일치하는지  
             const isEqual = value === formData.newPassword2
             setValid({
                 ...isValid,
-                newPassword: reg_newPassword.test(value) && isEqual
+                newPassword: reg_newPassword.test(value) && isEqual //정규식을 통과 && newPassword2 와 일치하는지
             })
         } else if (name === "newPassword2") {
             const isEqual = value === formData.newPassword
@@ -120,7 +122,7 @@ function UserPwdUpdateForm() {
                 const message = error.response.data
                 setError({
                     show: true,
-                    message
+                    message // message : message 
                 })
             })
     }
@@ -128,6 +130,12 @@ function UserPwdUpdateForm() {
     return (
         <>
             <h1>비밀번호 수정 양식</h1>
+            <Breadcrumb>
+                <BreadcrumbItem as={Link} to="/" href='/'>Home</BreadcrumbItem>
+                <BreadcrumbItem href="/user/detail" to="/user/detail" as={Link}>User</BreadcrumbItem>
+                <Breadcrumb.Item active>비밀번호 수정</Breadcrumb.Item>
+            </Breadcrumb>
+            
             {error.show && <Alert variant="danger">{error.message}</Alert>}
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
@@ -141,7 +149,7 @@ function UserPwdUpdateForm() {
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>새 비밀 번호</Form.Label>
-                    {/* 새로운 비빌번호가 유효하지 않으면 더러워지고 무효함  */}
+                    {/* 유효하지 않음 =  더러워지고 무효함  */}
                     <Form.Control isValid={isValid.newPassword}
                         isInvalid={!isValid.newPassword && isDirty.newPassword} onChange={handleChange} type="password" name="newPassword" />
                     <div className="form-text">

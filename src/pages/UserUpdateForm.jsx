@@ -2,8 +2,8 @@
 
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Breadcrumb, BreadcrumbItem, Button, Form } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 
 function UserUpdateForm(props) {
     const [user, setUser] = useState({});
@@ -141,6 +141,11 @@ function UserUpdateForm(props) {
             </svg>
 
             <h1>개인 정보 수정 양식</h1>
+            <Breadcrumb>
+                <BreadcrumbItem as={Link} to="/" href='/'>Home</BreadcrumbItem>
+                <BreadcrumbItem href="/user/detail" to="/user/detail" as={Link}>User</BreadcrumbItem>
+                <Breadcrumb.Item active>개인정보 수정</Breadcrumb.Item>
+            </Breadcrumb>
             
             <Form onReset={handleReset} onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
