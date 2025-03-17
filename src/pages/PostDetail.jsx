@@ -5,10 +5,12 @@ import { useParams, useSearchParams } from 'react-router-dom';
 
 function PostDetail(props) {
     // "/posts/:num" 에서 num 에 해당되는 경로 파라미터 값 읽어오기
+    // 요청되는 글번호를 가져옴
     const {num} = useParams()
     // 글 하나의 정보를 상태값으로 관리
     const [state,setState] = useState({})
     // 검색 키워드 관련처리
+    // 글 목록 보는 페이지로부터  공유됨
     const [params, setParams] = useSearchParams()
 
     useEffect(()=>{
@@ -57,7 +59,6 @@ function PostDetail(props) {
                 </thead>
             </Table>
             <div dangerouslySetInnerHTML={{__html: state.content}}> 
-                
             </div>
         </>
     );
