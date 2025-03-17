@@ -47,6 +47,7 @@ function PostForm(props) {
                     //axios 를 이용해서 api 서버에 전송
                     axios.post("/posts",{title, content})
                     .then((res=>{
+                        console.log(res.data);
                         alert("저장했습니다!")
                         //글 목록 보기로 이동
                         navigate("/posts");

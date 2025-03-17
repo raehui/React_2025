@@ -29,7 +29,7 @@ function Post(props) {
         console.log(query);
         axios.get(`/posts?pageNum=${pageNum}${params.get("condition")&& "&"+query}`)
         .then(res=>{
-            // console.log(res.data);
+            //pageInfo 은 PostListDto 내용을 가짐
             setPageInfo(res.data);
             //console.log(pageInfo);
             //페이징 숫자 배열을 만들어서 state 에 넣어준다.
@@ -145,7 +145,7 @@ function Post(props) {
                 {
                     pageArray.map(item => 
                         <Pagination.Item onClick={()=>{
-                            // console.log(pageInfo);
+                            //  console.log(pageInfo);
                             // setParams({pageNum : item});
                             move(item)
                         }} key={item} active={pageInfo.pageNum === item}>{item}</Pagination.Item>
