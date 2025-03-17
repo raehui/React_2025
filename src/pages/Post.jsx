@@ -4,7 +4,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Pagination, Table } from 'react-bootstrap';
 import { Prev } from 'react-bootstrap/esm/PageItem';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 
 function Post(props) {
 
@@ -100,6 +100,7 @@ function Post(props) {
 
     return (
         <>
+            <Link to="/posts/new">새글 작성</Link>
             <h1>글 목록 입니다</h1>
             <Table striped bordered size="sm">
                 <thead>
@@ -116,7 +117,9 @@ function Post(props) {
                     pageInfo.list.map(item =>
                         <tr key={item.num}>
                             <td>{item.num}</td>
-                            <td>{item.title}</td>
+                            <td>
+                                <Link to={`/posts/${item.num}${searchState.condition && "?condition="+searchState.condition+"&keyword="+searchState.keyword}`}>{item.title}</Link>
+                            </td>
                             <td>{item.writer}</td>
                             <td>{item.viewCount}</td>
                             <td>{item.createdAt}</td>
