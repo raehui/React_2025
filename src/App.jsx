@@ -4,9 +4,8 @@ import BsNavBar from "./components/BsNavBar";
 import LoginModal from "./components/LoginModal";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { decodeToken } from "jsontokens";
 import axios from "axios";
-
+import { jwtDecode } from "jwt-decode";
 
 function App() {
     // 현재 라우터에 해당하는 컴포넌트 가져오기
@@ -33,12 +32,12 @@ function App() {
                 axios.defaults.headers.common["Authorization"]=token;
 
                 // 토큰을 디코딩해서 userName 을 얻어온다.
-                const decoded = decodeToken(token.substring(7));
+                const decoded = jwtDecode(token.substring(7));
                 // 발생할 action
                 //로그인 한 정보를 유지시키기
                 const action = {type : "USER_INFO", payload : {
-                    userName :  decoded.payload.sub,
-                    role : decoded.payload.role
+                    userName :  decoded.sub,
+                    role : decoded.role
                 }};
                 // 액션 발행하기
                 dispatch(action);

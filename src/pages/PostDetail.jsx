@@ -23,8 +23,9 @@ function PostDetail(props) {
         keyword:""
     });
 
-    //로그인된 userName ???
-    const userName = useSelector(state=>state.userInfo.userName);
+    // 로그인된 userName ???
+    // null 혹은 로그인명
+    const userName = useSelector(state=> state.userInfo && state.userInfo.userName);
     
     const navigate = useNavigate();
 
@@ -108,7 +109,9 @@ function PostDetail(props) {
             {
                 userName === state.writer ?
                 <>
-                    <Button variant='warning'>수정</Button>
+                    <Button variant='warning' onClick={()=>{
+                        navigate(`/posts/${state.num}/edit`);
+                    }}>수정</Button>
                     <Button variant='danger' onClick={()=>setModalShow(true)}>삭제</Button>
                 </>
                 : ""
