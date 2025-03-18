@@ -17,14 +17,13 @@ function PostDetail(props) {
     // 글 하나의 정보를 상태값으로 관리
     const [state,setState] = useState({})
     // 검색 키워드 관련처리
-    // 글 목록 보는 페이지로부터  공유됨
+    // 글 목록 보는 페이지로부터 
     const [params, setParams] = useSearchParams({
         condition :"",
         keyword:""
     });
 
-    // 로그인된 userName ???
-    // null 혹은 로그인명
+    // 로그인 유저와 작성자를 비교해서 수정 삭제 버튼 나타나게끔 하기위해서
     const userName = useSelector(state=> state.userInfo && state.userInfo.userName);
     
     const navigate = useNavigate();
@@ -105,6 +104,7 @@ function PostDetail(props) {
             </Table>
             {/* 간접 출력 */}
             {/* cx 함수를 이용해서 복잡한 이름을 불러낼 수 있음 */}
+            {/* content 이름을 가진 css 요소 적용함 */}
             <div className={cx("content")} dangerouslySetInnerHTML={{__html: state.content}}></div>
             {
                 userName === state.writer ?
