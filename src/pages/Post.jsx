@@ -9,7 +9,7 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 function Post(props) {
 
     // "/posts?pageNum=x" 에서 pageNum 을 추출하기 위한 hook
-    // {pageNum:"1", count:"5" ... }
+    // 초기값 
     const [params, setParams] = useSearchParams({
         pageNum:1,
         condition:"",

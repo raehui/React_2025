@@ -1,10 +1,11 @@
 // src/pages/PostForm.jsx
 
 import React, { useEffect, useRef, useState } from 'react';
-import { Button, FloatingLabel, Form } from 'react-bootstrap';
+import { Alert, Button, FloatingLabel, Form } from 'react-bootstrap';
 import { initEditor } from '../editor/SmartEditor';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import AlertModal from '../components/AlertModal';
 
 function PostForm(props) {
 
@@ -24,8 +25,15 @@ function PostForm(props) {
     //경로 이동을 할 함수
     const navigate = useNavigate()
 
+    //알림 모달을 띄울지 말지 state 로 관리 하기
+    const [modalShow, setModalShow] = useState(false);
+
     return (
         <>
+            <AlertModal show={modalShow}  message="새글을 저장했습니다." onYes={()=>{
+                navigate("/posts");
+                setModalShow(false);
+            }}/>
             <h1>새글 추가 양식 입니다</h1>
             <Form>
                 <FloatingLabel label="제목" className="mb-3" controlId="title">
@@ -47,10 +55,11 @@ function PostForm(props) {
                     //axios 를 이용해서 api 서버에 전송
                     axios.post("/posts",{title, content})
                     .then((res=>{
-                        console.log(res.data);
-                        alert("저장했습니다!")
+                        // console.log(res.data);
+                        // alert("저장했습니다!")
                         //글 목록 보기로 이동
-                        navigate("/posts");
+                        // navigate("/posts");
+                        setModalShow(true);
                     }))
                     .catch(error=>{
                         console.log(error);
