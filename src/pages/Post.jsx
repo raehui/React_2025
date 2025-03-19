@@ -26,7 +26,7 @@ function Post(props) {
         
         //검색조건과 keyword 에 관련된 정보 얻어내기
         const query = `condition=${params.get("condition")}&keyword=${params.get("keyword")}`;
-        console.log(query);
+        // console.log(query);
         axios.get(`/posts?pageNum=${pageNum}${params.get("condition")&& "&"+query}`)
         .then(res=>{
             //pageInfo 은 PostListDto 내용을 가짐
