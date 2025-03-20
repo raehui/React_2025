@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 
 function Home(props) {
 
-
     return (
         <div>
             <h1>인덱스 페이지 입니다.</h1>
@@ -38,12 +37,11 @@ function Quiz() {
     
     const [currentQuiz, setCurrentQuiz] = useState(0);
 
-
     const inputAnswer = useRef();
 
-    const navigate = useNavigate();    
+    const navigate = useNavigate();   
 
-    
+
 
     const handleSubmit = () => {
         //질문과 입력한 답을 json 으로 전송한다.
@@ -70,8 +68,13 @@ function Quiz() {
     });
 
     useEffect(()=>{
+        console.log(currentQuiz);
+        
         navigate("/");
+        
     },[currentQuiz])
+
+
 
 
     return (
@@ -91,11 +94,8 @@ function Quiz() {
                         navigate("/")
                     }}> &larr; 다시 풀기</Button>
                     <Button variant='success' onClick={()=>{
-                        
-                        setCurrentQuiz(currentQuiz+1);
-                        console.log(quiz[currentQuiz]);
-                        navigate("/");                        
-                        
+                        setCurrentQuiz(currentQuiz => currentQuiz + 1);
+                                  
                     }}>다음문제 &rarr;</Button>
                 </div>
                 :
