@@ -26,7 +26,7 @@ function Home(props) {
         </div>
     );
 }
-
+//git test
 function Quiz() {
     let quiz = "콘솔창에 1~10 까지 순서대로 출력하는 code를 javascript 로 작성해 보세요";
 
