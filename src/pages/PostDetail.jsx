@@ -32,6 +32,7 @@ function PostDetail(props) {
         const query=new URLSearchParams(params).toString();
         axios.get(`/posts/${num}${params.get("condition") ? "?"+query : ""}`)
         .then(res=>{
+            console.log(res.data);
             //글하나의 정보를 상태값에 넣어주고 
             setState(res.data);
         })
@@ -126,6 +127,7 @@ function PostDetail(props) {
 
     return (
         <>
+            {/* state 는 자세히 보는 글의 정보 */}
             <ConfirmModal show={modalShow} message="이 글을 삭제 하시겠습니까?" 
                 onCancel={()=>setModalShow(false)} onYes={()=>{
                 axios.delete(`/posts/${state.num}`)
@@ -232,6 +234,7 @@ function CommentLi({postNum, comment, onRefresh}){
     </>;
     
     //대댓글 등록폼 submit 이벤트 처리
+    //postNum 은 li 에서 받아온 값으로 num 이랑 동일함.(원글의 글번호)
     const handleReInsertSubmit = (e)=>{
         e.preventDefault();
         //폼에 입력한 내용을 object 로 얻어낸다.
@@ -288,6 +291,7 @@ function CommentLi({postNum, comment, onRefresh}){
                         </div>
                         <div className={cx("comment-actions")}>
                             <button className={cx("reply-link")}>답글</button>
+                            {/* 로그인 사용자 === 댓글 작성자 link 에 수정, 삭제 버튼이 있음 */}
                             {link}
                         </div>
                     </dt>
