@@ -19,8 +19,6 @@ function Quiz() {
         "콘솔창에 1~10 까지 순서대로 출력하는 code를 javascript 로 작성해 보세요",
         "myName 이라는 변수를 만들고 본인의 이름을 대입해 보세요",
         "object 에 name 이라는 키값으로 본인의 이름을 넣고 addr 이라는 키값으로 주소를 넣어보세요",
-        
-        // 추가된 문제들
         "배열 fruits 에 '사과', '바나나', '포도' 를 넣고 출력해 보세요",
         "num 이라는 변수에 10을 넣고, 5를 더한 값을 콘솔에 출력해 보세요",
         "현재 시간을 출력하는 코드를 작성해 보세요",
@@ -56,7 +54,7 @@ function Quiz() {
     // useEffect(()=>{
         
     // },[])
-    
+
     const [state, setState] = useState({
         index:0, //문제의 index 값 state 로 관리
         isAnswered: false,
@@ -93,13 +91,11 @@ function Quiz() {
     }
 
 
-
     return (
         <>
             <h1>javascript 문제</h1>
             
                 <strong> 현재 점수: {state.score}</strong>
-
 
 
             <ProgressBar now={state.now+10} label={`${state.now+10}%`} animated />
@@ -115,6 +111,10 @@ function Quiz() {
                     {/* <div>{state.comment}</div> */}
                     <Button variant='warning' className='me-3' onClick={handleRetry}> &larr; 다시 풀기</Button>
                     <Button variant='success' onClick={handleNext}>다음문제 &rarr;</Button>
+                    {
+                        state.index === 10 ? <p>총점: <strong>{state.score}</strong></p> : <p>안녕</p>
+                    }
+
                 </div>
                 :
                 <div>
@@ -128,6 +128,7 @@ function Quiz() {
                         onChange={value => setState({...state, inputCode: value})}
                     />
                     <Button onClick={handleSubmit}>제출</Button>
+
                 </div>
             }
 
