@@ -198,6 +198,7 @@ function Quiz(){
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.3 }}
                 >
+                {/* 최초 렌더링시 (useEffect 실행 전) list가 아예 존재하지 않기에 에러 발생함  */}
                 { state.list.length > 0 && 
                     <div>
                         <div>
