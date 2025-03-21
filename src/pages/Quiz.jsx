@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Alert, Button, Form, ProgressBar } from "react-bootstrap";
 // gemini 가 응답한 markdown 을 해석하기 위한 패키지 설치 및 import 
 import MarkDown from 'react-markdown';
@@ -31,6 +31,7 @@ function Quiz() {
       ];
 
 
+
     const handleSubmit = () => {
         //질문과 입력한 답을 json 으로 전송한다.
         axios.post("/gemini/quiz", {
@@ -44,13 +45,18 @@ function Quiz() {
                 setState({
                     ...state,
                     ...res.data,
-                    isAnswered: true
+                    isAnswered: true,
+                    score : res.data.isCorrect ? state.score +10 : state.score 
                 });
                 //console.log(state.isAnswered);
             })
             .catch(error => console.log(error));
     }
 
+    // useEffect(()=>{
+        
+    // },[])
+    
     const [state, setState] = useState({
         index:0, //문제의 index 값 state 로 관리
         isAnswered: false,
@@ -86,13 +92,16 @@ function Quiz() {
         });
     }
 
-    
-
 
 
     return (
         <>
-            <h1>javascript 문제</h1> <strong>현재 점수: {state.score}</strong>
+            <h1>javascript 문제</h1>
+            
+                <strong> 현재 점수: {state.score}</strong>
+
+
+
             <ProgressBar now={state.now+10} label={`${state.now+10}%`} animated />
             {state.isAnswered ?
                 <div>
