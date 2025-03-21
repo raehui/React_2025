@@ -15,12 +15,21 @@ import "highlight.js/styles/atom-one-dark.css" // dark 테마 스타일 코드
 
 //git test
 function Quiz() {
-    let quizs = ["콘솔창에 1~10 까지 순서대로 출력하는 code를 javascript 로 작성해 보세요",
+    let quizs = [
+        "콘솔창에 1~10 까지 순서대로 출력하는 code를 javascript 로 작성해 보세요",
         "myName 이라는 변수를 만들고 본인의 이름을 대입해 보세요",
-        "object 에 name 이라는 키값으로 본인의 이름을 넣고 addr 이라는 키값으로 주소를 넣어보세요"
-    ];
+        "object 에 name 이라는 키값으로 본인의 이름을 넣고 addr 이라는 키값으로 주소를 넣어보세요",
+        
+        // 추가된 문제들
+        "배열 fruits 에 '사과', '바나나', '포도' 를 넣고 출력해 보세요",
+        "num 이라는 변수에 10을 넣고, 5를 더한 값을 콘솔에 출력해 보세요",
+        "현재 시간을 출력하는 코드를 작성해 보세요",
+        "두 개의 숫자 a, b 를 더한 결과를 반환하는 함수를 만들어 보세요",
+        "for문을 사용해서 배열 안의 값을 하나씩 출력해 보세요",
+        "if문을 사용하여 age가 20 이상이면 '성인입니다' 를 출력하는 코드를 작성해 보세요",
+        "prompt로 입력받은 이름을 alert 창으로 인사하는 코드를 작성해 보세요 (예: '안녕하세요, 홍길동님')"
+      ];
 
-    
 
     const handleSubmit = () => {
         //질문과 입력한 답을 json 으로 전송한다.
@@ -46,7 +55,9 @@ function Quiz() {
         index:0, //문제의 index 값 state 로 관리
         isAnswered: false,
         isCorrect: false,
-        inputCode:"" // 입력한 code 를 state 로 관리
+        inputCode:"", // 입력한 code 를 state 로 관리
+        now:0,
+        score:0
     });
 
     //다시 풀기 버튼을 눌렀을 때 실행되는 함수
@@ -61,7 +72,9 @@ function Quiz() {
             ...state,
             index : state.index+1,
             isAnswered : false,
-            inputCode : ""
+            inputCode : "",
+            now : state.now +10
+            
         });
     }
 
@@ -73,11 +86,14 @@ function Quiz() {
         });
     }
 
+    
+
+
 
     return (
         <>
-            <h1>javascript 문제</h1>
-            <ProgressBar now={50} label={"50%"} animated/>
+            <h1>javascript 문제</h1> <strong>현재 점수: {state.score}</strong>
+            <ProgressBar now={state.now+10} label={`${state.now+10}%`} animated />
             {state.isAnswered ?
                 <div>
                     <h3>체점 결과</h3>
