@@ -13,7 +13,7 @@ import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/atom-one-dark.css" // dark 테마 스타일 코드
 
 
-
+//git test
 function Quiz() {
     let quizs = ["콘솔창에 1~10 까지 순서대로 출력하는 code를 javascript 로 작성해 보세요",
         "myName 이라는 변수를 만들고 본인의 이름을 대입해 보세요",
