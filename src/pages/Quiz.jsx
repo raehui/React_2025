@@ -7,6 +7,8 @@ import MarkDown from 'react-markdown';
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { dracula } from "@uiw/codemirror-theme-dracula";
+import { java } from '@codemirror/lang-java';
+
 // MarkDown 에  코드 블럭을 prettify 하기 위해 
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github.css"; //github 과 동일한 스타일로 코드 디자인이 된다.
@@ -14,6 +16,24 @@ import ConfirmModal from '../components/ConfirmModal';
 import { useNavigate } from 'react-router-dom';
 //import "highlight.js/styles/atom-one-dark.css"  // dark 테마 스타일 코드 
 import { AnimatePresence, motion } from "framer-motion";
+
+/*
+    - CodeMirror 를 사용하기 위해 3개의 package 가 설치 되어 있어야 한다.
+    npm install @uiw/react-codemirror @codemirror/lang-javascript @uiw/codemirror-theme-dracula
+
+    - MarkDown 을 사용하기 위해서는 아래의  package 가 설치 되어 있어야 한다.
+    npm install react-markdown
+    
+    - MarkDown 을 출력할 때 code 를 이쁘게 출력하기 위한 package 
+    npm install rehype-highlight
+
+    - transtion 또는 animation 을 화면 전환할 때 사용하기 위한 package 
+    npm install framer-motion 
+
+    - Framer Motion 동작 공식 도큐먼트
+    https://motion.dev/docs/react-animate-presence
+    
+*/
 
 function Quiz(){
     const quizs = [
@@ -167,6 +187,7 @@ function Quiz(){
             </ProgressBar>
             <AnimatePresence mode="wait">
                 { state.isAnswered ? (
+                    // key 는 React 가 애니메이션을 적용한 대상의 단서
                 <motion.p
                     key="p1"
                     initial={{ opacity: 0, y: 20 }}
@@ -211,6 +232,7 @@ function Quiz(){
                             theme={dracula}
                             height='300px'
                             value={state.inputCode}
+                            // readOnly 를 사용하면 출력용으로 사용 가능
                             onChange={value => setState({...state, inputCode:value})}/>
                 
                         <Button onClick={handleSubmit}>제출</Button>

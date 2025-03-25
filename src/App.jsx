@@ -63,6 +63,7 @@ function App() {
             <div className="container" style={{ marginTop: "60px" }}>
                 <AnimatePresence mode="wait">
                     {/* key 가 바뀌면 AnimatePresence 가 페이지 전환으로 인식 */}
+                    {/* .p 이면 모션이 적용된 p 요소 */}
                     <motion.div
                         key={location.pathname} // 경로 변경 감지
                         initial={{ opacity: 0, x: -50 }} // 초기 상태
